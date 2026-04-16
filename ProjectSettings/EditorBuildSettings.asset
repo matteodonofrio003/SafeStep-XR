@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 0
+    path: Assets/Scenes/SampleScene.unity
+    guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/MainScene.unity
+    guid: 80868d7ca1afe4dec94f40a83375f591
+  m_configObjects:
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+    com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: b62f17d57a2f10345aba4b282a10acbd, type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: c5b64c067bdb47241812ffa6db308b8c, type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 40ad806bca54e06439b220cebe921181, type: 2}
