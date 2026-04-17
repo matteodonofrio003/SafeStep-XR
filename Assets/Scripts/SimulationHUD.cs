@@ -69,7 +69,7 @@ public class SimulationHUD : MonoBehaviour
         {
             int minuti = Mathf.FloorToInt(tempoResiduo / 60);
             int secondi = Mathf.FloorToInt(tempoResiduo % 60);
-            testoTimer.text = string.Format("SLA Residuo: {0:00}:{1:00}", minuti, secondi);
+            testoTimer.text = string.Format("Tempo Residuo: {0:00}:{1:00}", minuti, secondi);
         }
     }
 }

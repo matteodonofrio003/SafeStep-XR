@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -109,6 +110,10 @@ public class ScenarioManager : MonoBehaviour
     [Tooltip("Invocato quando l'operatore raggiunge l'uscita di emergenza.")]
     public UnityEvent OnExitReached;
 
+    [Tooltip("Invocato ogni secondo durante il countdown iniziale. " +
+             "Collegare: HUD per mostrare il conto alla rovescia (parametro int = secondi rimanenti).")]
+    public UnityEvent<int> OnCountdownTick;
+
 
     // =========================================================================
     // LIFECYCLE — Unity Messages
@@ -122,7 +127,7 @@ public class ScenarioManager : MonoBehaviour
 
         // Inizializzazione stato fisico dal dato configurato nell'asset
         _currentReactorTemp = scenarioData.TemperaturaNominaleReattore;
-        _currentSlaTimer    = 0f;
+        _currentSlaTimer = 0f;
 
         // Pre-calcolo: converti l'incremento da °C/min a °C/sec una volta sola
         _reactorTempIncreasePerSecond = scenarioData.IncrementoTemperaturaPerMinuto / 60f;
@@ -130,25 +135,50 @@ public class ScenarioManager : MonoBehaviour
         Debug.Log($"[ScenarioManager] Inizializzato. Temp reattore: {_currentReactorTemp}°C | " +
                   $"SLA limite: {scenarioData.LimiteSlaSecondi}s | " +
                   $"Demo x{scenarioData.MoltiplicatoreDemo}");
+
+        // Avvia il countdown automatico di 5 secondi prima del CascadeFailure
+        StartCoroutine(AutoStartCountdown());
     }
 
     private void Update()
     {
-    // Il timer si ferma solo se lo stato è SlaFailed o se lo scenario è risolto (stato finale)
-    if (CurrentState == ScenarioState.CascadeFailure || 
-        CurrentState == ScenarioState.RobotIsolated || 
-        CurrentState == ScenarioState.ReactorStabilizing)
-    {
-        TickSlaTimer();
-        
-        // La temperatura invece potrebbe fermarsi se il raffreddamento è attivo
-        if (CurrentState != ScenarioState.ReactorStabilizing)
+        // Il timer si ferma solo se lo stato è SlaFailed o se lo scenario è risolto (stato finale)
+        if (CurrentState == ScenarioState.CascadeFailure ||
+            CurrentState == ScenarioState.RobotIsolated ||
+            CurrentState == ScenarioState.ReactorStabilizing)
         {
-            TickReactorTemperature();
+            TickSlaTimer();
+
+            // La temperatura invece potrebbe fermarsi se il raffreddamento è attivo
+            if (CurrentState != ScenarioState.ReactorStabilizing)
+            {
+                TickReactorTemperature();
+            }
+
+            CheckFailureConditions();
+        }
+    }
+
+
+    // =========================================================================
+    // COUNTDOWN AUTOMATICO
+    // =========================================================================
+
+    /// <summary>
+    /// Attende 5 secondi dallo spawn e avvia automaticamente il CascadeFailure.
+    /// Notifica ogni secondo tramite OnCountdownTick per aggiornare l'HUD.
+    /// </summary>
+    private IEnumerator AutoStartCountdown()
+    {
+        for (int i = 5; i > 0; i--)
+        {
+            Debug.Log($"[ScenarioManager] ⏳ Simulazione in avvio tra {i}...");
+            OnCountdownTick?.Invoke(i);
+            yield return new WaitForSeconds(1f);
         }
 
-        CheckFailureConditions();
-    }
+        Debug.Log("[ScenarioManager] ▶️ Countdown terminato. Avvio CascadeFailure.");
+        TriggerCascadeFailure();
     }
 
 
@@ -186,29 +216,32 @@ public class ScenarioManager : MonoBehaviour
         if (!slaScaduto && !temperaturasCritica) return;
 
         // Salviamo il motivo specifico
-        LastFailureReason = slaScaduto 
-            ? "TEMPO SCADUTO: Lo SLA è terminato!" 
+        LastFailureReason = slaScaduto
+            ? "TEMPO SCADUTO: Lo SLA è terminato!"
             : "DISASTRO: Il reattore è esploso per la temperatura!";
 
         Debug.LogWarning($"[ScenarioManager] SCENARIO FALLITO — {LastFailureReason}");
 
         TransitionTo(ScenarioState.SlaFailed);
-        OnSlaFailed?.Invoke(); // Questo attiverà il messaggio sull'HUD
+        OnSlaFailed?.Invoke();
     }
 
-    // Metodo utile per l'HUD: restituisce il tempo RIMANENTE invece di quello trascorso
-    public float GetRemainingSlaTime() 
+    /// <summary>
+    /// Restituisce il tempo SLA rimanente invece di quello trascorso.
+    /// </summary>
+    public float GetRemainingSlaTime()
     {
         return Mathf.Max(0, scenarioData.LimiteSlaSecondi - _currentSlaTimer);
     }
+
 
     // =========================================================================
     // PUBLIC API — Triggerabili dall'interazione VR (XR Interactables, ecc.)
     // =========================================================================
 
     /// <summary>
-    /// Avvia il guasto a cascata. Chiamare da XRSimpleInteractable del pannello elettrico
-    /// o da un trigger di scenario automatico.
+    /// Avvia il guasto a cascata. Chiamato automaticamente dal countdown,
+    /// oppure manualmente da XRSimpleInteractable del pannello elettrico.
     /// </summary>
     public void TriggerCascadeFailure()
     {
@@ -237,7 +270,6 @@ public class ScenarioManager : MonoBehaviour
 
         Debug.Log("[ScenarioManager] 🔒 Robot isolato dall'operatore.");
         TransitionTo(ScenarioState.RobotIsolated);
-
         OnRobotIsolated?.Invoke();
     }
 
@@ -247,40 +279,38 @@ public class ScenarioManager : MonoBehaviour
     public void RestartCooling()
     {
         // 1. GUARDIA SILENZIOSA
-        if (CurrentState == ScenarioState.ReactorStabilizing) return; 
+        if (CurrentState == ScenarioState.ReactorStabilizing) return;
 
         // 2. CONTROLLO DI ERRORE VERO
-        if (CurrentState != ScenarioState.RobotIsolated) {
+        if (CurrentState != ScenarioState.RobotIsolated)
+        {
             Debug.LogWarning($"[ScenarioManager] RestartCooling ignorato — stato corrente: {CurrentState}");
             return;
         }
 
         Debug.Log("[ScenarioManager] ❄️ Raffreddamento riavviato. Corri all'uscita!");
         TransitionTo(ScenarioState.ReactorStabilizing);
-
-        // 3. LANCIA L'EVENTO!
-        OnCoolingRestarted?.Invoke(); // <--- AGGIUNGI QUESTA RIGA
+        OnCoolingRestarted?.Invoke();
     }
 
-    // Nuovo metodo da chiamare quando si tocca il box invisibile all'uscita
+    /// <summary>
+    /// Chiamato quando l'operatore raggiunge il box trigger dell'uscita di emergenza.
+    /// </summary>
     public void ReachExit()
     {
-        if (CurrentState != ScenarioState.ReactorStabilizing) 
+        if (CurrentState != ScenarioState.ReactorStabilizing)
         {
             Debug.LogWarning("Devi prima stabilizzare il reattore!");
             return;
         }
 
         Debug.Log("[ScenarioManager] 🏆 Uscita raggiunta! Timer fermato.");
-        
-        // Cambiamo stato in uno che non triggera l'Update (es. NormalOperations o uno nuovo)
-        TransitionTo(ScenarioState.NormalOperations); 
-        
-        OnScenarioResolved?.Invoke(); // Qui scatta la vittoria
-        OnExitReached?.Invoke();     // Apre la porta
+        TransitionTo(ScenarioState.NormalOperations);
+        OnScenarioResolved?.Invoke();
+        OnExitReached?.Invoke();
     }
 
-    
+
     // =========================================================================
     // UTILITY
     // =========================================================================

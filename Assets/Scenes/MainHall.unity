@@ -38126,8 +38126,28 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 850472575020430777, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 850472575020430777, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 850472575020430777, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 850472575020430777, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -790.817
+      objectReference: {fileID: 0}
+    - target: {fileID: 850472575020430777, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 185
+      objectReference: {fileID: 0}
+    - target: {fileID: 1762649870947905356, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2770910201100076536, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
       propertyPath: m_Pivot.x
@@ -38209,6 +38229,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3471195819932053122, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 3471195819932053122, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -231
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455859154219053297, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455859154219053297, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455859154219053297, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455859154219053297, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455859154219053297, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455859154219053297, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 454
+      objectReference: {fileID: 0}
     - target: {fileID: 5782498693106844061, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
       propertyPath: spawnPointName
       value: reactor
@@ -38231,12 +38283,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6026889257472725170, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_fontSize
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 6026889257472725170, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
       propertyPath: m_margin.x
-      value: -344.33237
+      value: -688.40515
       objectReference: {fileID: 0}
     - target: {fileID: 6026889257472725170, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
       propertyPath: m_margin.z
-      value: -360.7963
+      value: -719.4544
+      objectReference: {fileID: 0}
+    - target: {fileID: 6026889257472725170, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 6026889257472725170, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
       propertyPath: m_isRightToLeft
@@ -38259,8 +38319,32 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6419406747722070583, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6419406747722070583, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6419406747722070583, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6419406747722070583, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 790.817
+      objectReference: {fileID: 0}
+    - target: {fileID: 6419406747722070583, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 185
+      objectReference: {fileID: 0}
+    - target: {fileID: 6482494515510086685, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_margin.w
+      value: -48.00689
+      objectReference: {fileID: 0}
+    - target: {fileID: 6482494515510086685, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_margin.z
+      value: -268.7812
       objectReference: {fileID: 0}
     - target: {fileID: 6482494515510086685, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
       propertyPath: m_fontColor.b
@@ -38334,6 +38418,40 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pannello
       objectReference: {fileID: 0}
+    - target: {fileID: 7130500689388234939, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_text
+      value: "Un guasto pneumatico blocca la valvola di sfiato principale di un reattore
+        chimico, impedendo il rilascio della pressione interna. A causa di questo
+        malfunzionamento, la pressione all\u2019interno del sistema inizia ad aumentare
+        progressivamente con un tasso di +0.5 bar ogni cinque secondi.\nDal momento
+        in cui viene attivato l\u2019allarme, l\u2019operatore dispone di un tempo
+        limitato per intervenire e mettere in sicurezza l\u2019impianto, prima che
+        la pressione raggiunga la soglia critica di 8.5 bar. "
+      objectReference: {fileID: 0}
+    - target: {fileID: 7130500689388234939, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_fontSize
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 7130500689388234939, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_margin.x
+      value: -700.0971
+      objectReference: {fileID: 0}
+    - target: {fileID: 7130500689388234939, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_margin.z
+      value: -729.4969
+      objectReference: {fileID: 0}
+    - target: {fileID: 7130500689388234939, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 7130500689388234939, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 7130500689388234939, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8555179283443407868, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -38347,7 +38465,32 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3895744359363576151, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
       insertIndex: -1
       addedObject: {fileID: 866270444}
+    - targetCorrespondingSourceObject: {fileID: 8141523434107880048, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1565123695}
   m_SourcePrefab: {fileID: 100100000, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+--- !u!1 &1565123694 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8141523434107880048, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+  m_PrefabInstance: {fileID: 1565123693}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1565123695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1565123694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 859337266f356cc4c91adc838f3bb75d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TeleportButton
+  destination: {fileID: 0}
+  targetSceneName: ProductionLine
+  spawnPointName: prod
+  labelText: {fileID: 0}
+  iconImage: {fileID: 0}
 --- !u!1 &1569324651
 GameObject:
   m_ObjectHideFlags: 0
