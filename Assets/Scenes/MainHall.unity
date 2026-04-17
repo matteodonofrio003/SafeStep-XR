@@ -21031,6 +21031,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 128072639}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!1 &866270437 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3895744359363576151, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+  m_PrefabInstance: {fileID: 1565123693}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &866270444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 866270437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 859337266f356cc4c91adc838f3bb75d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TeleportButton
+  destination: {fileID: 0}
+  targetSceneName: 
+  spawnPointName: 
+  labelText: {fileID: 0}
+  iconImage: {fileID: 0}
 --- !u!1 &867813762
 GameObject:
   m_ObjectHideFlags: 0
@@ -38087,6 +38109,245 @@ Transform:
   m_Children: []
   m_Father: {fileID: 128072639}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1565123693
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 850472575020430777, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 850472575020430777, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 850472575020430777, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -790.817
+      objectReference: {fileID: 0}
+    - target: {fileID: 2770910201100076536, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2770910201100076536, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2770910201100076536, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2770910201100076536, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2770910201100076536, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2770910201100076536, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2770910201100076536, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 2372.4512
+      objectReference: {fileID: 0}
+    - target: {fileID: 2770910201100076536, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 1243.1525
+      objectReference: {fileID: 0}
+    - target: {fileID: 2770910201100076536, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2770910201100076536, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2770910201100076536, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 8.4706
+      objectReference: {fileID: 0}
+    - target: {fileID: 2770910201100076536, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9999998
+      objectReference: {fileID: 0}
+    - target: {fileID: 2770910201100076536, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2770910201100076536, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.0006653085
+      objectReference: {fileID: 0}
+    - target: {fileID: 2770910201100076536, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2770910201100076536, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.3797
+      objectReference: {fileID: 0}
+    - target: {fileID: 2770910201100076536, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.702
+      objectReference: {fileID: 0}
+    - target: {fileID: 2770910201100076536, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2770910201100076536, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -0.076
+      objectReference: {fileID: 0}
+    - target: {fileID: 2770910201100076536, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5782498693106844061, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: spawnPointName
+      value: reactor
+      objectReference: {fileID: 0}
+    - target: {fileID: 5782498693106844061, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: targetSceneName
+      value: Reattore
+      objectReference: {fileID: 0}
+    - target: {fileID: 6026889257472725170, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_text
+      value: 'Un braccio robotico sulla linea di produzione subisce un blocco meccanico
+        improvviso a causa di una meccanica imprevista generica. Il motore del robot
+        continua a tentare di muoversi, causando un surriscaldamento critico e l''attivazione
+        dell''allarme antincendio: questo sovraccarico elettrico provoca un abbassamento
+        di tensione che colpisce il sistema di raffreddamento di uno dei reattori
+        chimici vicini'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6026889257472725170, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6026889257472725170, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_margin.x
+      value: -344.33237
+      objectReference: {fileID: 0}
+    - target: {fileID: 6026889257472725170, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_margin.z
+      value: -360.7963
+      objectReference: {fileID: 0}
+    - target: {fileID: 6026889257472725170, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_isRightToLeft
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6026889257472725170, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 6026889257472725170, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6419406747722070583, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6419406747722070583, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6419406747722070583, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 790.817
+      objectReference: {fileID: 0}
+    - target: {fileID: 6482494515510086685, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6482494515510086685, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6482494515510086685, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6482494515510086685, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6482494515510086685, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_enableVertexGradient
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6482494515510086685, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_fontColorGradient.topLeft.b
+      value: 0.018155914
+      objectReference: {fileID: 0}
+    - target: {fileID: 6482494515510086685, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_fontColorGradient.topLeft.g
+      value: 0.36618048
+      objectReference: {fileID: 0}
+    - target: {fileID: 6482494515510086685, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_fontColorGradient.topLeft.r
+      value: 0.9622642
+      objectReference: {fileID: 0}
+    - target: {fileID: 6482494515510086685, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_fontColorGradient.topRight.b
+      value: 0.08214667
+      objectReference: {fileID: 0}
+    - target: {fileID: 6482494515510086685, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_fontColorGradient.topRight.g
+      value: 0.27445212
+      objectReference: {fileID: 0}
+    - target: {fileID: 6482494515510086685, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_fontColorGradient.topRight.r
+      value: 0.6698113
+      objectReference: {fileID: 0}
+    - target: {fileID: 6482494515510086685, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_fontColorGradient.bottomLeft.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6482494515510086685, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_fontColorGradient.bottomLeft.g
+      value: 0.8726415
+      objectReference: {fileID: 0}
+    - target: {fileID: 6482494515510086685, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_fontColorGradient.bottomLeft.r
+      value: 0.87352467
+      objectReference: {fileID: 0}
+    - target: {fileID: 6482494515510086685, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_fontColorGradient.bottomRight.b
+      value: 0.8537736
+      objectReference: {fileID: 0}
+    - target: {fileID: 6482494515510086685, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_fontColorGradient.bottomRight.g
+      value: 0.21611659
+      objectReference: {fileID: 0}
+    - target: {fileID: 6482494515510086685, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_fontColorGradient.bottomRight.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6970356796421710920, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_Name
+      value: Pannello
+      objectReference: {fileID: 0}
+    - target: {fileID: 8555179283443407868, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects:
+    - {fileID: 4760087171925404576, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+    - {fileID: 1733153641552807608, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3895744359363576151, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 866270444}
+  m_SourcePrefab: {fileID: 100100000, guid: 80a59716806831b42ab01040a5d5f562, type: 3}
 --- !u!1 &1569324651
 GameObject:
   m_ObjectHideFlags: 0
@@ -49613,3 +49874,4 @@ SceneRoots:
   - {fileID: 128072639}
   - {fileID: 71432500}
   - {fileID: 1139181712}
+  - {fileID: 1565123693}

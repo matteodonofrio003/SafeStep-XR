@@ -1,19 +1,23 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class TeleportButton : MonoBehaviour
 {
-    [Header("Destinazione")]
+    [Header("Destinazione stessa scena")]
     public TeleportDestination destination;
 
-    [Header("UI (opzionale - auto-fill)")]
+    [Header("Destinazione altra scena")]
+    public string targetSceneName; // scrivi qui il nome della scena
+    public string spawnPointName;
+
+    [Header("UI (opzionale)")]
     public TMP_Text labelText;
     public Image iconImage;
 
     void Start()
     {
-        // Popola automaticamente label e icona dalla destinazione
         if (destination != null)
         {
             if (labelText != null) labelText.text = destination.locationName;
@@ -21,13 +25,32 @@ public class TeleportButton : MonoBehaviour
                 iconImage.sprite = destination.icon;
         }
 
-        // Collega il click
-        GetComponent<Button>().onClick.AddListener(OnClick);
+        Button btn = GetComponent<Button>();
+        if (btn != null) btn.onClick.AddListener(OnClick);
     }
 
     void OnClick()
     {
+        if (!string.IsNullOrEmpty(targetSceneName))
+        {
+            // ✅ SALVA lo spawn point PRIMA di cambiare scena
+            if (!string.IsNullOrEmpty(spawnPointName))
+            {
+                PlayerPrefs.SetString("SpawnPoint", spawnPointName);
+                PlayerPrefs.Save(); // ← QUESTA RIGA MANCAVA!
+            }
+
+            SceneManager.LoadScene(targetSceneName);
+            return;
+        }
+
         if (TeleportManager.Instance != null && destination != null)
             TeleportManager.Instance.TeleportTo(destination);
+    }
+
+    void OnDestroy()
+    {
+        Button btn = GetComponent<Button>();
+        if (btn != null) btn.onClick.RemoveListener(OnClick);
     }
 }
