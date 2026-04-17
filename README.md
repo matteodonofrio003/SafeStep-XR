@@ -1,9 +1,9 @@
 # SafeStep-XR: Simulatore Professionale di Emergency Technical Shutdown
-
+![logo]["./img/logo.jpg"]
 **Versione:** 1.0.0  
 **Status:** Production Ready  
-**Ultimo Aggiornamento:** Aprile 2026  
-**Sviluppato durante:** Hackathon Industriale 2026
+**Ultimo Aggiornamento:** 17 Aprile 2026  
+**Sviluppato durante:** Hackathon Youbiquo 
 
 ---
 
