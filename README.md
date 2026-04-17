@@ -9,20 +9,6 @@
 
 ---
 
-## 📋 Indice dei Contenuti
-
-- [Project Overview](#project-overview)
-- [Core Pillars](#core-pillars)
-- [Technical Architecture](#technical-architecture)
-- [Hardware & Interazioni](#hardware--interazioni)
-- [Installation & Setup](#installation--setup)
-- [API Integration](#api-integration)
-- [Project Structure](#project-structure)
-- [Future Roadmap](#future-roadmap)
-- [Support & Documentazione](#support--documentazione)
-
----
-
 ## 🏭 Project Overview
 
 ### Missione Strategica
@@ -55,8 +41,55 @@ SafeStep-XR offre una piattaforma XR immersiva per il training di procedure di e
 |--------|----------|------------------------------|
 | **Immersione XR** | Esperienza spaziale dei sistemi fisici reali su Leonardo XR |Replica fedele di unità di processo |
 | **FSM Rigorosa** | Garantisce sequenzialità procedurale senza deviazioni |Impedisce deviazioni critiche da SOP chimiche |
-| **Fisica Misurabile** | Parametri reali (pressione, temperatura, pH) influenzano l'outcome |Simulazione termodinamica di reazioni chimiche incontrollate |
-| **Monitoraggio Telemetrico** | SLA Tracking in tempo reale durante la simulazione |Registrazione conformità normativa (SEVESO, HSE) |
+| **Fisica Misurabile** | Parametri reali (pressione, temperatura) influenzano l'outcome |Simulazione termodinamica di reazioni chimiche incontrollate |
+
+---
+
+# 🏛️ Flusso VR: Main Hall e Selezione Scenari
+
+Ambiente iniziale (Lobby/Hub) in cui l'operatore VR viene accolto prima di iniziare l'addestramento. L'interfaccia di selezione è integrata direttamente nell'ambiente virtuale (UI) per mantenere alta l'immersività.
+
+## 🔄 User Journey (Navigazione Menu)
+1. **Spawn (Ingresso):** L'operatore si materializza all'interno della Main Hall.
+2. **Interfaccia TV:** Davanti all'utente è presente uno schermo televisivo interattivo che funge da menu principale del simulatore.
+3. **Selezione Modulo:** Tramite i controller VR (puntatore laser), l'operatore seleziona uno dei due scenari di emergenza disponibili.
+4. **Transizione:** Al click, il sistema avvia il caricamento e teletrasporta istantaneamente l'utente nella scena operativa selezionata.
+
+## 🎯 Destinazioni Possibili
+* ➡️ **Scenario 1 - Guasto a Cascata:** Avvia il modulo complesso in tre fasi (Isolamento SCADA, Raffreddamento Reattore ed Evacuazione guidata).
+* ➡️ **Scenario 2 - Emergenza Reattore:** Avvia il modulo incentrato sul guasto pneumatico singolo, uso dei DPI e chiusura manuale della valvola.
+
+# 🏭 SCENARIO 1: Emergenza Reattore
+
+Scenario di addestramento VR per la gestione di un guasto pneumatico industriale, basato su limiti di tempo (SLA) e rispetto dei protocolli di sicurezza.
+
+## 🔄 User Journey
+1. **Avvio Emergenza:** La pressione del reattore inizia a salire e parte il timer SLA (2 minuti).
+2. **Allarme (4.5 bar):** Scattano in automatico sirena audio e luci rosse lampeggianti.
+3. **Messa in Sicurezza:** L'operatore si sposta alla postazione e indossa fisicamente i DPI (casco e guanti).
+4. **Intervento:** L'operatore raggiunge il reattore e ruota la valvola a 360° per sfiatare la pressione.
+
+## 🎯 Esiti Possibili
+* ✅ **Successo:** La valvola viene chiusa in tempo **con i DPI indossati**. Pressione ripristinata e allarmi spenti.
+* ❌ **Infortunio:** L'operatore ruota la valvola **senza DPI**. L'azione viene respinta e l'emergenza continua.
+* 💥 **Game Over (Timeout):** Il tempo scade (pressione a 8.5 bar). Il reattore cede e la simulazione viene interrotta.
+
+---
+
+# 🏭 SCENARIO 2: Guasto a Cascata ed Evacuazione
+
+Scenario di addestramento multi-fase. L'operatore è supportato da un HUD dinamico (istruzioni e timer) e da un sistema di Wayfinding visivo a terra per risolvere un guasto a catena e mettersi in salvo.
+
+## 🔄 User Journey (Fasi dell'Emergenza)
+1. **Sovraccarico (Fase 1):** Scatta l'allarme. L'HUD mostra il timer SLA e la temperatura del reattore. Si accende il percorso luminoso, con pedane di teletrasporto. L'operatore deve isolare il robot tramite SCADA.
+2. **Rischio Fusione (Fase 2):** Robot isolato. L'HUD aggiorna le istruzioni e si accende il percorso luminoso 🟠 verso il Reattore R-4 (Tank). L'operatore deve avviare il raffreddamento.
+3. **Evacuazione (Fase 3):** Reattore in sicurezza. L'HUD ordina l'evacuazione immediata. Si accende il percorso luminoso 🟢 verso l'uscita (Exit).
+4. **Fuga:** L'operatore entra nell'area di uscita. La porta di emergenza si apre automaticamente (animazione fluida) garantendo la via di fuga.
+
+## 🎯 Esiti Possibili
+* ✅ **Vittoria:** L'operatore completa l'intera catena (Isolamento ➡️ Raffreddamento ➡️ Uscita) prima dello scadere del tempo. L'HUD mostra il messaggio di successo verde.
+
+* ❌ **Game Over (SLA Failed):** Il timer scade prima della risoluzione. I percorsi luminosi a terra si spengono e l'HUD mostra a tutto schermo la motivazione del fallimento.
 
 ---
 
@@ -92,8 +125,7 @@ Ogni operazione critica è sottoposta a **vincoli temporali (SLA - Service Level
 **Implementazione:**
 - Contatori in tempo reale nel HUD olografico
 - Flag di violazione SLA registrati in telemetria
-- Penalizzazione score se i tempi vengono superati
-- Alert acustico e visivo al 80% del tempo massimo
+- Alert acustici e visivo
 
 ---
 
@@ -104,18 +136,6 @@ La simulazione utilizza **parametri fisici e chimici calibrati** sulla realtà d
 **Parametri Chimico-Industriali Monitorati:**
 - **Pressione Sistema** (bar) — Controllo sovrapressione
 - **Temperatura Circuito** (°C) — Monitoraggio reazioni esotermiche
-- **Concentrazione Prodotti** (% v/v) — Tossicità e esplosività
-- **pH Soluzione** — Indicatore reazione chimica controllata
-- **Portata di Dump** (m³/h) — Velocità scarico emergenza
-- **Integrità Sigilli** (%) — Rischio di perdite tossiche
-- **Pressione Parziale Vapore** (bar) — Volatilità sostanza
-
-**Logica di Valutazione:**
-Ogni deviazione da parametri corretti:
-- Registra un **deficit procedurale** con indicatore causa radice
-- Influenza il feedback AI post-training sulla chimicità del processo
-- Modula i coefficienti di rischio nella simulazione
-- Determina il livello di "mastery" dell'operatore chimico
 
 ---
 
@@ -143,7 +163,6 @@ Questa architettura consente di:
 - ⚡ **Hot-swapping**: Modificare parametri di processo (pressione setpoint, temp limite) da editor senza riavvio
 - 📊 **Serializzazione**: Esportazione dati telemetrici in formato strutturato per audit SEVESO
 - 🔄 **Versionamento**: Tracciamento delle iterazioni procedurali con changelog
-- 🔐 **Validation**: Controllo automatico della coerenza termodinamica tra parametri
 
 ---
 
@@ -165,123 +184,19 @@ Ogni stato rappresenta una fase critica:
 
 ---
 
-#### **C. Singleton Pattern per Manager Centrali**
-
-I **Manager** centralizzati orchestrano i diversi aspetti della simulazione tramite pattern Singleton, garantendo istanza unica e accesso globale.
-
-**Manager Chiave:**
-| Manager | Responsabilità |Contesto Chimico|
-|---------|--------|----------|
-| **GameManager** | Ciclo simulazione, persistence scenario, scoring operatore |Orchestrazione sequenza procedure chimiche |
-| **UIManager** | Rendering HUD olografico, aggiornamenti telemetria real-time |Display pressione reattore, temp, concentrazioni |
-| **XRManager** | Input device Leonardo XR, grab interactions, feedback aptico |Controllo valvole, manometri, pompe |
-| **TelemetryManager** | Raccolta dati fisici, formattazione telemetria |Acquisizione parametri chimici per API Gemini |
-| **ChemistryEngine** | Simulazione reazioni chimiche, equilibri termodinamici |Calcolo outcome procedure emergenza |
-
----
-
-#### **D. Pattern Observer tramite UnityEvents**
-
-Il disaccoppiamento è garantito mediante pattern Observer che consente ai moduli di comunicare senza dipendenze dirette.
-
-Esempi di eventi critici:
-- **OnStateChanged** — Transizione FSM (ad es. Isolamento → Extinguishing)
-- **OnSLAViolation** — Superamento tempo limite per operazione
-- **OnPhysicsUpdate** — Nuova lettura parametri chimici (pressione, temp, pH)
-- **OnDangerousCondition** — Rilevamento anormalità (reazione esotermica incontrollata)
-- **OnSimulationComplete** — Fine procedura emergenza
-
-**Vantaggi:**
-- 🔌 Zero dipendenze hard-coded tra moduli
-- 🧩 Moduli plug-and-play interscambiabili (facile aggiungere nuovi sensori)
-- 🧪 Facilita testing tramite mock di sistemi chimici
-
----
-
-### Flusso Dati Asincrone
-
-```
-┌─────────────────┐
-│ Simulazione XR  │
-│  (In esecuzione)│
-└────────┬────────┘
-         │ [Telemetria strutturata]
-         ▼
-┌─────────────────────────────────────┐
-│ TelemetryManager                    │
-│ • Raccolta parametri fisici         │
-│ • Formatting JSON                   │
-│ • Buffering in memoria              │
-└────────┬────────────────────────────┘
-         │ [async/await]
-         ▼
-┌──────────────────────────────────────┐
-│ REST Client → Gemini 1.5 Pro API    │
-│ POST /analysis                       │
-│ Content-Type: application/json       │
-└────────┬───────────────────────────┘
-         │ [HTTP Response]
-         ▼
-┌──────────────────────────────────────┐
-│ Feedback Engine                      │
-│ • Parsing risposta AI                │
-│ • Generazione rating operatore       │
-│ • Suggerimenti miglioramento         │
-└────────┬───────────────────────────┘
-         │ [UnityEvent]
-         ▼
-┌──────────────────────────────────────┐
-│ UI Renderer                          │
-│ • Displaying feedback personalizzato │
-│ • Performance analytics              │
-└──────────────────────────────────────┘
-```
-
-Le chiamate all'API Gemini sono gestite tramite **pattern asincrono (async/await)** per evitare blocchi UI durante l'analisi telemetrica. La comunicazione avviene su canale separato dalla simulazione in tempo reale, garantendo che il training non sia interrotto da latenze di rete.
-
----
-
 ## 📱 Hardware & Interazioni
-
-### Dispositivo Target: Leonardo XR
-
-**Specifiche Rilevanti per Applicazione Chimica:**
-
-| Aspetto | Dettaglio |Impatto su Training |
-|--------|----------|----------|
-| **Display** | 2560 x 1440 per occhio, FOV 100° |Visualizzazione nitida manometri, indicatori chimici |
-| **Processore** | Qualcomm Snapdragon XR1 Gen 2 |Calcolo real-time fisica chimica della simulazione |
-| **Memory** | 8GB RAM, Storage 256GB |Storage dati telemetrici ~500MB per sessione |
-| **Input** | Hand tracking + Controller a 6DoF |Controllo intuitivo valvole, leve, pulsanti di shutdown |
-| **Haptic** | Vibrazione integrata nei controller |Feedback tattile su raggiungimento limite pressione/temp |
-| **Connettività** | Wi-Fi 6E, Bluetooth 5.3, USB-C |Upload asincrono telemetria a Gemini |
-
----
 
 ### Sistema di Interazione XR
 
 #### **XR Grab Interactables**
 
-Ogni elemento fisico interagibile nel contesto chimico (valvola, interruttore di isolamento, pompa di emergenza, leva di dump) è reso **grabbabile e manipolabile** nel controllo dell'operatore.
+Ogni elemento fisico interagibile nel contesto chimico (valvola, interruttore di isolamento, pompa di emergenza, leva di dump) è reso **manipolabile** nel controllo dell'operatore.
 
 Questa interazione consente:
 - **Rotazione precisa** di valvole (0° = chiuso, 90° = aperto)
 - **Feedback visivo** di range operativi validi (zona verde=sicuro, gialla=attenzione, rossa=vietato)
 - **Snap automatico** a posizioni significative per la procedura chimico (posizioni discrete)
 - **Timestamp di interazione** registrato per audit trail
-
----
-
-#### **Feedback Aptico**
-
-Ogni interazione critica genera **feedback tattile** tramite vibrazione dei controller, replicando la sensazione fisica:
-
-- **Vibrazione forte** — Raggiungimento del limite di pressione/temperatura (warning di pericolo)
-- **Vibrazione media** — Superamento del 80% dell'SLA temporale
-- **Vibrazione leggera** — Completamento di una sub-procedura corretta
-- **Pattern pulsante** — Emergenza rilevata (anomalia chimica)
-
-Questo feedback sensoriale aumenta la consapevolezza dell'operatore senza richiedere visualizzazione diretta.
 
 ---
 
@@ -293,235 +208,22 @@ Il display informativo è ancorato allo spazio mondiale, posizionato in prossimi
 - 📊 **Manometro pressione** — 0-100+ bar, con zone di rischio colorate
 - 🌡️ **Termometro temperatura** — -20 a +250°C, indicatore reazione esotermica
 - ⏱️ **SLA Timer countdown** — Tempo rimanente per fase critica
-- 🧪 **Indicatore concentrazione** — Livello tossicità/esplosività della soluzione
-- 🎯 **Procedura attuale** — Step N/M con descrizione SOP
 - 🔴 **Stato valvole** — Open/Closed/Transitioning su piccolo schematico
-- 📡 **Status connessione API** — Collegamento Gemini per analisi
 - 🚨 **Alert bar** — Notifiche di pericolo chimico imminente
 
 ---
 
-#### **Shader Emission per Feedback Visivo**
+## 🚀 Perché Investire in SafeStep-XR? (Executive Pitch)
 
-Gli oggetti interagibili nel modello chimico utilizzano **emissione dinamica** per indicare stato e disponibilità:
+**Il Problema:** Nell'industria chimica, gli errori sotto stress causano disastri milionari. Il training tradizionale (su carta o video) non crea la "memoria muscolare" necessaria per reagire alle vere emergenze industriali.
 
-**Codifica colore emission:**
-- 🟢 **Verde brillante** — Oggetto disponibile per interazione (valvola pronta per essere azionata)
-- 🟡 **Giallo pulsante** — Avvertenza (raggiungimento soglia criticità chimica)
-- 🔴 **Rosso lampeggiante** — Pericolo critico (non interagire, emergenza rilevata)
-- ⚪ **Bianco/Off** — Stato neutro, completato
+**La Soluzione:** **SafeStep-XR** è una piattaforma VR enterprise che permette agli operatori di simulare *Emergency Shutdown* critici in un ambiente immersivo, sicuro e basato su parametri fisici reali.
 
-L'intensity dell'emissione aumenta progressivamente man mano che ci si avvicina al limite SLA temporale, creando un effetto visivo di urgenza.
+### 💎 I 3 Motivi per Investire (Value Proposition)
 
----
-
-## 🚀 Installation & Setup
-
-### Prerequisiti
-
-- **Sistema Operativo:** Windows 10/11 (64-bit)
-- **Unity:** Versione 2022.3 LTS o successiva
-- **Hardware:** PC con GPU supportata (NVIDIA RTX 30 serie o superiore consigliato)
-- **Leonardo XR Device:** Acceso, carico, connesso a rete
-- **API Key Gemini:** Account Google AI Studio configurato
-
----
-
-### Step 1: Clone del Repository
-
-Clonare il repository dal servizio di version control:
-
----
-
-### Step 2: Configurazione Unity
-
-1. Aprire **Unity Hub**
-2. Selezionare **"Add Project from Disk"**
-3. Navigare a `SafeStep-XR/` (cartella del progetto)
-4. Attendere la risoluzione automatica delle dipendenze
-
-Il progetto rischiede i seguenti package:
-- Assembly-CSharp (core runtime)
-- UniTask (pattern async avanzati)
-- InputSystem (controllo device)
-- TextMeshPro (rendering UI avanzato)
-- XR Interaction Toolkit (integrazione XR)
-
----
-
-### Step 3: Importazione XR Interaction Toolkit
-
-Dalla finestra **Package Manager** di Unity:
-1. Selezionare **Window → Package Manager**
-2. Cercare **"XR Interaction Toolkit"**
-3. Installare versione **2.5.0 o successiva**
-
-Alternativa: Modificare `Packages/manifest.json` aggiungendo la dipendenza direttamente.
-
----
-
-### Step 4: Configurazione API Key Gemini
-
-1. Accedere a [Google AI Studio](https://aistudio.google.com/app/apikeys)
-2. Creare una nuova **API Key** (gratis)
-3. Nel progetto Unity, navigare a:
-   ```
-   Assets → Resources → Config → APIConfiguration.asset
-   ```
-4. Incollare l'API Key nel campo relativo
-
-**Nota:** La chiave API sarà utilizzata per l'analisi asincrona dei dati telemetrici post-simulazione. Mantenerla confidenziale e non committare nel repository pubblico.
-
----
-
-### Step 5: Build per Leonardo XR
-
-1. Aprire **File → Build Settings**
-2. Impostare **Platform:** `Universal Windows Platform (UWP)` o `Snapdragon Spaces`
-3. Selezionare **Architecture:** `ARM64`
-4. Impostare **Build Type:** `Release` (per performance ottimali su device mobile XR)
-5. Cliccare **Build and Run** per deploy diretto su device o **Build** per generare binario
-
-La build genererà l'eseguibile ottimizzato per Leonardo XR.
-
----
-
-## 🔌 API Integration
-
-### Endpoint Gemini 1.5 Pro
-
-**Purpose:** Analisi telemetrica post-simulazione e generazione feedback AI
-
-**Metodo:** `POST`
-
-**Endpoint:**
-```
-https://generativelanguage.googleapis.com/v1beta/tunedModels:generateContent
-```
-
-**Headers:**
-```
-Authorization: Bearer {GEMINI_API_KEY}
-Content-Type: application/json
-```
-
-**Request Body:**
-Il payload contiene i dati telemetrici della simulazione completata in formato strutturato:
-- Durata simulazione (secondi)
-- Rispetto SLA temporali (sì/no)
-- Precisione mantenimento parametri chimici (pressione, temperatura, pH)
-- Correttezza sequenza procedurale valvole
-- Deviazioni fisiche riscontrate
-- Valutazione preliminare operatore
-
-**Response (Success):**
-Gemini API ritorna un feedback personalizzato che include:
-- Valutazione della performance globale
-- Analisi dei gap procedurali riscontrati
-- Suggerimenti specifici di miglioramento basati su chimica del processo
-- Scoring di mastery dell'operatore su scala definita
-- Consigli didattici per iterazione successiva
-
-**Error Handling:**
-In caso di errore di connessione o rate limiting:
-- Retry automatico con backoff esponenziale (max 3 tentativi)
-- Fallback a feedback generico pre-calcolato se API non disponibile
-- Logging completo dell'incidente per diagnostica
-
----
-
-## 📁 Project Structure
-
-```
-SafeStep-XR/
-│
-├── Assets/
-│   ├── Resources/
-│   │   ├── Scenarios/                      # ScriptableObjects scenari ETS
-│   │   │   ├── BaseShutdownScenario.asset
-│   │   │   ├── HighPressureScenario.asset
-│   │   │   └── CriticalFailureScenario.asset
-│   │   │
-│   │   ├── Config/
-│   │   │   ├── APIConfiguration.asset      # Credenziali Gemini API
-│   │   │   ├── HUDConfiguration.asset
-│   │   │   └── PhysicsParameters.asset
-│   │   │
-│   │   └── UI/
-│   │       ├── Fonts/                      # TextMeshPro fonts
-│   │       └── Materials/                  # Shader emission materials
-│   │
-│   ├── Scripts/
-│   │   ├── Core/
-│   │   │   ├── GameManager.cs              # Orchestración simulazione
-│   │   │   ├── ShutdownFSM.cs              # Finite State Machine
-│   │   │   └── SimulationEvents.cs         # Event aggregator
-│   │   │
-│   │   ├── Managers/
-│   │   │   ├── UIManager.cs                # HUD renderer
-│   │   │   ├── XRManager.cs                # Input XR handling
-│   │   │   ├── TelemetryManager.cs         # Data collection
-│   │   │   ├── AudioManager.cs             # Feedback audio
-│   │   │   └── HapticManager.cs            # Vibration feedback
-│   │   │
-│   │   ├── AI/
-│   │   │   ├── GeminiAnalysisService.cs    # API client
-│   │   │   ├── FeedbackEngine.cs           # Procesing risposta AI
-│   │   │   └── PerformanceAnalyzer.cs      # Scoring operator
-│   │   │
-│   │   ├── Physics/
-│   │   │   ├── PressureSystem.cs           # Sistema pressione
-│   │   │   ├── ValveController.cs          # Controllo valvole
-│   │   │   ├── TemperatureSensor.cs
-│   │   │   └── FlowRateMeter.cs
-│   │   │
-│   │   ├── Interactions/
-│   │   │   ├── InteractiveObjectVisuals.cs
-│   │   │   ├── GrabConstraints.cs          # Vincoli rotazionali
-│   │   │   └── SnapBehavior.cs             # Snap a posizioni
-│   │   │
-│   │   └── Data/
-│   │       ├── TelemetryPacket.cs          # Struttura dati telemetria
-│   │       ├── AIFeedback.cs               # Parsing feedback Gemini
-│   │       └── ShutdownScenarioPersistence.cs
-│   │
-│   ├── Scenes/
-│   │   ├── MainMenu.unity
-│   │   ├── SimulationEnvironment.unity     # Scena principale
-│   │   ├── FinishedScreen.unity
-│   │   └── Editor/
-│   │       └── TestingEnvironment.unity
-│   │
-│   ├── Prefabs/
-│   │   ├── Systems/
-│   │   │   ├── Valve_Interactable.prefab
-│   │   │   ├── PressureGauge.prefab
-│   │   │   └── ControlPanel.prefab
-│   │   │
-│   │   └── UI/
-│   │       └── HUDCanvas.prefab
-│   │
-│   └── Shaders/
-│       ├── InteractiveObject.shader        # Emission dynamics
-│       └── HUDDisplay.shader
-│
-├── Packages/                               # Unity package dependencies
-│   └── manifest.json                        # XRI, UniTask, TextMeshPro
-│
-├── ProjectSettings/
-│   ├── ProjectSettings.asset
-│   └── QualitySettings.asset               # Performance presets Leonardo XR
-│
-├── Documentation/
-│   ├── ARCHITECTURE.md                     # Deep-dive architetturale
-│   ├── API_REFERENCE.md                    # Gemini API specifiche
-│   ├── DEVELOPER_GUIDE.md                  # Setup developer
-│   └── TROUBLESHOOTING.md                  # FAQ e debugging
-│
-├── .gitignore                              # Esclude Library/, Temp/, obj/
-├── SafeStep-XR.slnx                        # Visual Studio solution file
-└── README.md                               # Questo file
-```
+* 💰 **ROI Diretto e Risk Mitigation:** La nostra architettura software costringe l'operatore a rispettare rigidamente i protocolli (SOP). Tracciamo ogni tempo di reazione e ogni errore, fornendo dati oggettivi che le aziende possono usare per la **compliance normativa (SEVESO/ATEX)** e per **abbattere i premi assicurativi**.
+* 📈 **Architettura Altamente Scalabile:** Non abbiamo costruito un "singolo videogioco", ma un motore modulare. Aggiungere nuovi scenari, nuovi reattori o espanderci in nuovi settori (Oil & Gas, Nucleare) richiede costi e tempi di sviluppo minimi. È un modello SaaS pronto per scalare B2B.
+> **In sintesi:** SafeStep-XR non è un semplice simulatore. È il nuovo standard tecnologico per la sicurezza, la certificazione e la prevenzione disastri nell'industria pesante. 
 
 ---
 
@@ -565,34 +267,35 @@ SafeStep-XR/
 
 ---
 
-### **Tecnologie In Valutazione**
-
-| Tecnologia | Caso d'Uso Chimico | Stato |
-|-----------|-----------|--------|
-| **Unity Sentis** | Inference locale per anomaly detection chimica on-device | In Review |
-| **Netcode for GameObjects** | Sincronizzazione procedura multi-operatore | In Evaluation |
-| **Addressables** | Dynamic loading scenari chimici | Q3 2026 |
-| **Burst Compiler** | Ottimizzazione simulazione reazioni esotermiche | Q3 2026 |
-| **DOTS** | Data-oriented physics per calcoli termodinamici massivi | Advanced Study |
+## 👥 Il Team (SafeStep-XR)
 
 
-## 📊 Statistiche Progetto
-
-| Metrica | Valore |
-|---------|--------|
-| **Linee di Codice C#** | ~8,500 |
-| **ScriptableObjects** | 24 |
-| **Scenari Simulazione** | 6 |
-| **Call Gerarchici API** | 3,200+ (durante training) |
-| **Token Gemini** | ~50K (per sessione analisi) |
-| **Performance Target** | 90+ FPS su Leonardo XR |
-| **Latenza UI Update** | <16ms (60 FPS) |
-| **Latency API** | <2s (async await) |
+| Team Member | Ruolo nel Progetto | Contributo Principale |
+| :--- | :--- | :--- |
+| 🚀 **Matteo** | *Team Leader* | Gestione architettura di base, setup del repository GitHub, versioning e integrazione delle build VR, creazione asset MainHall e ProductionLine, generazione di modelli 3D e ricerca asset, testing. |
+| 🥽 **Francesco** | *XV/VR Creator* | Sviluppo logica di simulazione (FSM, SLA Timer) per scenario 2 (reattore) e creazione assset, programmazione `ReactorManager`, gestione trigger eventi ed exit routing. |
+| ⚙️ **Emanuel** | *Dev* | Sviluppo e implemetazione della logica del Menù iniziale, implementazione script necessari, integrazione generale, bug fixing. |
+| 🎨 **Simone** | *UX/UI Designer* | Progettazione degli spazi 3D e della UI, implementazione logica di teletrasporto, bug fixing, general development, testing. |
+| 🖥️ **Luigi** | *XV/VR Creator* | Sviluppo logica di simulaziome completa (FSM, SLA Timer) per scenario 1 (production line), implementazione script `ScenarioManager` e integrazione con il resto della logica implementata, gestione trigger eventi. |
 
 ---
+
+---
+
+## 🛠️ Note di Sviluppo e Limitazioni (Hackathon)
+
+> [!IMPORTANT]  
+> **Nota sui limiti di tempo:** A causa della durata limitata dell'Hackathon, alcune funzionalità di "Quality of Life" sono state posticipate per dare priorità alla solidità della logica di simulazione e alla stabilità del sistema FSM.
+
+### 🔄 Sviluppi Futuri Prioritari
+* **Sistema di Navigazione Scene Interattivo:** Implementazione di un pulsante fisico (UI 3D) a fine simulazione (sia in caso di vittoria che di fallimento) per permettere all'operatore di tornare istantaneamente alla *Main Hall* e selezionare un nuovo scenario senza dover riavviare l'applicazione.
+* * **Migliorie grafiche:** Migliorare graficamente la scena (ES. frecce nello scenario 2).
+* **Sistema di Reset Dinamico:** Gestione del reset totale dei parametri (pressione, timer, posizione oggetti) per consentire sessioni di training ripetute nello stesso scenario senza ricaricare la scena di Unity.
+* **Aggiunta di AI_Evaluator:** Integrazione di un'agentAI esterno richiamato tramite API che da consigli e delucidazioni su noramtive tecniche all'utente durante la simualazione oltre che una valutazione sull'operatore dell'utente una volta finita la simulazione
+
+---
+
 
 **Versione Documento:** 1.0.0 | **Data:** Aprile 2026 | **Stato:** Production Ready
 
 ---
-
-*Per ulteriori chiarimenti, contattare il team di sviluppo su GitHub Discussions.*
