@@ -296,6 +296,6 @@ Il display informativo è ancorato allo spazio mondiale, posizionato in prossimi
 ---
 
 
-**Versione Documento:** 1.0.0 | **Data:** Aprile 2026 | **Stato:** Production Ready
+**Versione Documento:** 1.0.0 | **Data:** 17 Aprile 2026 | **Stato:** Production Ready
 
 ---
